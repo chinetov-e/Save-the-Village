@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public AudioSource warriorSound;
 
     public GameObject gameOverScreen;
+    public GameObject winScreen;
 
     public Image peasantTimerImg;
     public Image warriorTimerImg;
@@ -24,7 +25,8 @@ public class GameManager : MonoBehaviour
     public Text resourcesText;
     public Text raidWaveText;
     public Text enemiesCountText;
-    public Text gameStats;
+    public Text gameOverStats;
+    public Text gameWinStats;
 
     public int peasantCount;
     public int warriorsCount;
@@ -140,7 +142,15 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 0;
             gameOverScreen.SetActive(true);
-            gameStats.text = $"Всего собрано пшеницы: {totalWheatProduced} \n Пережито набегов: {raidWave - 1} \n Произведено войнов: {warriorsProduced} \n Произведено крестьян: {peasantProduced}";
+            gameOverStats.text = $"Всего собрано пшеницы: {totalWheatProduced} \n Пережито набегов: {raidWave - 1} \n Произведено войнов: {warriorsProduced} \n Произведено крестьян: {peasantProduced}";
+        }
+
+        if(wheatCount > 500)
+        {
+            Time.timeScale = 0;
+            winScreen.SetActive(true);
+            gameWinStats.text = $"Вы собрали достаточно пшеницы \n Всего собрано пшеницы: {totalWheatProduced} \n Пережито набегов: {raidWave - 1} \n Произведено войнов: {warriorsProduced} \n Произведено крестьян: {peasantProduced}";
+
         }
     }
 
